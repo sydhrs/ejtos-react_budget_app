@@ -5,6 +5,9 @@ const AllocationForm = (props) => {
     const [name, setName] = useState('');
     const [cost, setCost] = useState('');
     const [action, setAction] = useState('');
+    const [currency, setCurrency] = useState(null)
+
+
     const submitEvent = () => {
         if(cost > remaining) {
             alert("The value cannot exceed remaining funds  £"+remaining);
@@ -27,6 +30,7 @@ const AllocationForm = (props) => {
             });
         }
     };
+
     return (
         <div>
             <div className='row'>
@@ -50,17 +54,35 @@ const AllocationForm = (props) => {
                         <option defaultValue value="Add" name="Add">Add</option>
                         <option value="Reduce" name="Reduce">Reduce</option>
                     </select>
-                    <input
-                        required='required'
-                        type='number'
-                        id='cost'
-                        value={cost}
-                        style={{ marginLeft: '2rem' , size: 10}}
-                        onChange={(event) => setCost(event.target.value)}>
-                    </input>
+
+
+                    <select className="custom-select currency-dd" id="inputGroupSelect03"  style={{ marginLeft: '2rem' }} onChange={(event) => setName(event.target.value)}>
+                        <option defaultValue>Currency (£ Pound)</option>
+                        <option value="Marketing" name="marketing"> Marketing</option>
+                        <option value="Sales" name="sales">Sales</option>
+                        <option value="Finance" name="finance">Finance</option>
+                        <option value="HR" name="hr">HR</option>
+                        <option value="IT" name="it">IT</option>
+                        <option value="Admin" name="admin">Admin</option>
+                    </select>
+                        <label htmlFor='cost' style={{marginLeft: '2rem'}}>Budget:</label>
+                            <input
+                                required='required'
+                                type='number'
+                                id='cost'
+                                placeholder='Add Budget'
+                                value={cost}
+                                onChange={(event) => {
+                                    setCost(event.target.value)
+                                }}
+
+                                style={{ marginLeft: '2rem', size: 10 }}
+                            />
+
                     <button className="btn btn-primary" onClick={submitEvent} style={{ marginLeft: '2rem' }}>
                         Save
                     </button>
+
                 </div>
             </div>
         </div>
